@@ -37,3 +37,13 @@ function App() {
 }
 
 export default App;
+
+if (import.meta.vitest) {
+    const { it, expect } = await import("vitest");
+    const { render, screen } = await import("./utils/test-utils");
+    it("should fail", async () => {
+        expect(true).toBeTruthy();
+        render(<App />);
+        expect(screen.getByText("Vite + React")).toBeDefined();
+    });
+}
